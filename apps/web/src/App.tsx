@@ -23,7 +23,25 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
-        <Button appName="web">Click me from @repo/ui</Button>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '16px',
+            alignItems: 'flex-start',
+          }}
+        >
+          <div>
+            <p style={{ fontSize: '12px', color: '#999', marginBottom: '4px' }}>BtnDefault</p>
+            <Button>다음</Button>
+          </div>
+          <div>
+            <p style={{ fontSize: '12px', color: '#999', marginBottom: '4px' }}>
+              BtnHover&amp;Pressed
+            </p>
+            <Button>다음</Button>
+          </div>
+        </div>
       </div>
       <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
     </>

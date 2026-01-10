@@ -1,37 +1,34 @@
 import React from 'react';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  appName?: string;
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline';
 }
 
-export const Button: React.FC<ButtonProps> = ({ 
-  appName, 
-  children, 
-  variant = 'primary',
-  className = '',
-  ...props 
-}) => {
-  const handleClick = () => {
-    if (appName) {
-      alert(`Hello from ${appName}!`);
-    }
-  };
-
-  const baseClasses = 'px-4 py-2 rounded font-medium transition-colors';
-  const variantClasses = {
-    primary: 'bg-blue-500 text-white hover:bg-blue-600',
-    secondary: 'bg-gray-500 text-white hover:bg-gray-600',
-    outline: 'border-2 border-blue-500 text-blue-500 hover:bg-blue-50',
-  };
+export const Button: React.FC<ButtonProps> = ({ children, className = '', ...props }) => {
+  // Figma 스펙에 따른 기본 스타일
+  // Container: corner radius 12px, padding 12px, fill #111
+  // Text: Pretendard semibold 16px, line-height 148%, letter-spacing -2%, fill #fff
+  // Hover & Pressed: fill #111 80%
+  const buttonClasses = [
+    'w-full', // width 100%
+    'px-3 py-3', // padding 12px
+    'rounded-[12px]', // corner radius 12px
+    'font-semibold', // Pretendard semibold (600)
+    'text-base', // 16px
+    'leading-[148%]', // line-height 148%
+    'tracking-[-2%]', // letter-spacing -2%
+    'text-white', // fill #fff
+    'bg-[#111]', // fill #111 (default)
+    'hover:bg-[rgba(17,17,17,0.8)]', // hover: fill #111 80%
+    'active:bg-[rgba(17,17,17,0.8)]', // pressed: fill #111 80%
+    'transition-colors duration-200',
+    'cursor-pointer',
+    'font-sans', // Pretendard 폰트
+    'disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-50',
+  ].join(' ');
 
   return (
-    <button 
-      {...props} 
-      onClick={handleClick}
-      className={`${baseClasses} ${variantClasses[variant]} ${className}`}
-    >
+    <button {...props} className={`${buttonClasses} ${className}`}>
       {children}
     </button>
   );

@@ -1,13 +1,21 @@
+/* Pretendard 폰트 임포트 - @import는 반드시 맨 앞에 위치해야 함 */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
 /* Tailwind CSS v4 공유 설정 */
 @import 'tailwindcss';
 
+/* Tailwind가 스캔할 소스 파일 경로 설정 (패키지 기준 상대 경로) */
+@source "../../apps/**/*.{ts,tsx}";
+@source "../../packages/**/*.{ts,tsx}";
+
 /* 공유 theme 변수 및 커스텀 스타일 */
 @theme {
-  /* 커스텀 색상, 폰트, 스페이싱 등을 여기에 추가 */
-  /* 예시:
-  --color-primary: #3b82f6;
-  --font-display: ui-serif, Georgia, serif;
-  */
+  /* 커스텀 색상 */
+  --color-button-default: #111;
+  --color-button-hover: rgba(17, 17, 17, 0.8);
+
+  /* Pretendard 폰트 */
+  --font-family-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 /* 공유 컴포넌트 클래스 (필요시) */
@@ -21,10 +29,8 @@
 
 /* 공유 유틸리티 클래스 (필요시) */
 @layer utilities {
-  /* 예시:
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  /* Button 텍스트 letter-spacing -2% */
+  .tracking-[-2%] {
+    letter-spacing: -0.02em;
   }
-  */
 }
