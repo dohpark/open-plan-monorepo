@@ -10,7 +10,8 @@
       "@/*": ["./src/*"]
     },
     "module": "ESNext",
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "noEmit": true
   },
   "include": ["src"]
 }
