@@ -13,6 +13,10 @@ const meta = {
       control: 'text',
       description: 'Button label',
     },
+    loading: {
+      control: 'boolean',
+      description: 'Shows loading spinner and disables button',
+    },
     className: {
       control: false,
       description:
@@ -32,7 +36,7 @@ export const Default: Story = {
     docs: {
       description: {
         story: [
-          '### Default',
+          '#### Default State',
           '- **Container**',
           '  - Border radius: 12px',
           '  - Padding: 12px',
@@ -44,21 +48,50 @@ export const Default: Story = {
           '  - Letter spacing: -2%',
           '  - Color: #fff',
           '',
-          '### Hover',
+          '#### Hover State',
           '- **Container**',
           '  - Background: #111 at 80% opacity',
           '- **Text**',
           '  - Same as Default',
           '',
-          '### Pressed (Active)',
+          '#### Pressed State (Active)',
           '- **Container**',
           '  - Background: #111 at 80% opacity',
           '- **Text**',
           '  - Same as Default',
           '',
-          '### Notes',
+          '#### Notes',
           '- Hover and active states share the same visual treatment.',
           '- Background color transitions smoothly (200ms) if `transition-colors duration-200` is enabled.',
+        ].join('\n'),
+      },
+    },
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    children: '다음',
+    loading: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: [
+          '#### Loading State',
+          '- **Container**',
+          '  - Same as Default',
+          '  - Cursor: not-allowed',
+          '  - Opacity: 70%',
+          '- **Content**',
+          '  - Shows spinning loader instead of text',
+          '  - Spinner: White circular spinner with 20px size',
+          '  - Animation: Continuous spin using Tailwind `animate-spin`',
+          '',
+          '#### Behavior',
+          '- Button is automatically disabled when `loading={true}`',
+          '- `aria-busy` attribute is set to `true` for accessibility',
+          '- Prevents multiple clicks during async operations',
         ].join('\n'),
       },
     },
