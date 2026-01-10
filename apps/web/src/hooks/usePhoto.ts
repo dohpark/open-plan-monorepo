@@ -1,5 +1,5 @@
-import { useMutation } from '@tanstack/react-query';
-import { fetchImageData } from '../api/photo';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { fetchImageData, preloadImage } from '../api/photo';
 import { usePhotoStore } from '../stores/photoStore';
 
 export const usePhoto = () => {
@@ -14,6 +14,16 @@ export const usePhoto = () => {
     },
   });
 
+  // 이미지 프리로딩 쿼리
+  const imageQuery = useQuery({
+    queryKey: ['image', photoData?.download_url],
+    queryFn: () => preloadImage(photoData!.download_url),
+    enabled: !!photoData?.download_url,
+    staleTime: Infinity,
+    gcTime: Infinity,
+    retry: 2,
+  });
+
   return {
     data: photoData,
     isLoading: mutation.isPending,
@@ -22,5 +32,8 @@ export const usePhoto = () => {
     hasFetched,
     mutate: mutation.mutate,
     mutateAsync: mutation.mutateAsync,
+    isImageLoading: imageQuery.isPending || imageQuery.isFetching,
+    isImageLoaded: imageQuery.isSuccess,
+    isImageError: imageQuery.isError,
   };
 };

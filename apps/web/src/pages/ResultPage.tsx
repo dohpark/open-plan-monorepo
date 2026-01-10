@@ -4,7 +4,7 @@ import { usePhoto } from '../hooks/usePhoto';
 
 export default function ResultPage() {
   const navigate = useNavigate();
-  const { data: imageData, hasFetched } = usePhoto();
+  const { data: imageData, hasFetched, isImageLoading, isImageLoaded } = usePhoto();
 
   const handlePrevious = () => {
     navigate('/');
@@ -35,12 +35,24 @@ export default function ResultPage() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-center lg:gap-20 w-full">
             {/* Image Section */}
             <div className="w-full lg:flex-1 lg:max-w-[65%] mb-6 md:mb-8 lg:mb-0">
-              <div className="rounded-[24px] overflow-hidden bg-white shadow-sm">
+              <div
+                className="rounded-[24px] overflow-hidden bg-white shadow-sm relative"
+                style={{
+                  aspectRatio: `${imageData.width} / ${imageData.height}`,
+                }}
+              >
+                {/* Image - Always render to allow browser to start loading */}
                 <img
                   src={imageData.download_url}
                   alt={`Photo by ${imageData.author}`}
-                  className="w-full h-auto object-cover"
+                  className={`w-full h-full object-cover transition-opacity duration-300 ${
+                    isImageLoaded ? 'opacity-100' : 'opacity-0'
+                  }`}
                 />
+                {/* Skeleton - Show when image is loading */}
+                {isImageLoading && (
+                  <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-[24px]" />
+                )}
               </div>
             </div>
 
