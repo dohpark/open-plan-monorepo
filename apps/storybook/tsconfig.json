@@ -6,4 +6,3 @@
   "include": ["stories", ".storybook"],
   "exclude": ["node_modules"]
 }
-

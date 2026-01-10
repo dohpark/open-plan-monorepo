@@ -9,6 +9,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {

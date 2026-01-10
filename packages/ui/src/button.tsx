@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   appName?: string;
@@ -18,4 +18,3 @@ export const Button: React.FC<ButtonProps> = ({ appName, children, ...props }) =
     </button>
   );
 };
-
