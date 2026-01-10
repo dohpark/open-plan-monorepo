@@ -11,7 +11,12 @@ const meta = {
   argTypes: {
     children: {
       control: 'text',
-      description: 'The button content',
+      description: 'Button label',
+    },
+    className: {
+      control: false,
+      description:
+        'Optional. Use for layout/spacing only (e.g., `w-full`, `mt-4`). Avoid overriding core styles like `bg-*`, `text-*`, `border-*`, `shadow-*`.',
     },
   },
 } satisfies Meta<typeof Button>;
@@ -26,34 +31,35 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          '기본 상태\n- Container: corner radius 12px, padding 12px, fill #111\n- Text: Pretendard semibold 16px, line-height 148%, letter-spacing -2%, fill #fff',
-      },
-    },
-  },
-};
-
-export const Hover: Story = {
-  args: {
-    children: '다음',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: '호버 상태\n- Container: fill #111 80%\n- 나머지 스타일은 기본 상태와 동일',
-      },
-    },
-  },
-};
-
-export const Pressed: Story = {
-  args: {
-    children: '다음',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: '누름 상태 (active)\n- Container: fill #111 80%\n- 나머지 스타일은 기본 상태와 동일',
+        story: [
+          '### Default',
+          '- **Container**',
+          '  - Border radius: 12px',
+          '  - Padding: 12px',
+          '  - Background: #111',
+          '- **Text**',
+          '  - Font: Pretendard, Semibold',
+          '  - Size: 16px (text-base)',
+          '  - Line height: 148%',
+          '  - Letter spacing: -2%',
+          '  - Color: #fff',
+          '',
+          '### Hover',
+          '- **Container**',
+          '  - Background: #111 at 80% opacity',
+          '- **Text**',
+          '  - Same as Default',
+          '',
+          '### Pressed (Active)',
+          '- **Container**',
+          '  - Background: #111 at 80% opacity',
+          '- **Text**',
+          '  - Same as Default',
+          '',
+          '### Notes',
+          '- Hover and active states share the same visual treatment.',
+          '- Background color transitions smoothly (200ms) if `transition-colors duration-200` is enabled.',
+        ].join('\n'),
       },
     },
   },
