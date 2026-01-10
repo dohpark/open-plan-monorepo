@@ -17,6 +17,11 @@ const meta = {
       control: 'text',
       description: 'The button content',
     },
+    variant: {
+      control: 'select',
+      options: ['primary', 'secondary', 'outline'],
+      description: 'The button variant',
+    },
   },
 } satisfies Meta<typeof Button>;
 
@@ -40,5 +45,26 @@ export const Disabled: Story = {
   args: {
     children: 'Disabled',
     disabled: true,
+  },
+};
+
+export const Primary: Story = {
+  args: {
+    variant: 'primary',
+    children: 'Primary Button',
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    variant: 'secondary',
+    children: 'Secondary Button',
+  },
+};
+
+export const Outline: Story = {
+  args: {
+    variant: 'outline',
+    children: 'Outline Button',
   },
 };

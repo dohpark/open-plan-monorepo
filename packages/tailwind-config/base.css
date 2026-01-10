@@ -1,0 +1,30 @@
+/* Tailwind CSS v4 공유 설정 */
+@import 'tailwindcss';
+
+/* 공유 theme 변수 및 커스텀 스타일 */
+@theme {
+  /* 커스텀 색상, 폰트, 스페이싱 등을 여기에 추가 */
+  /* 예시:
+  --color-primary: #3b82f6;
+  --font-display: ui-serif, Georgia, serif;
+  */
+}
+
+/* 공유 컴포넌트 클래스 (필요시) */
+@layer components {
+  /* 예시:
+  .btn-primary {
+    @apply px-4 py-2 bg-blue-500 text-white rounded;
+  }
+  */
+}
+
+/* 공유 유틸리티 클래스 (필요시) */
+@layer utilities {
+  /* 예시:
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  */
+}
