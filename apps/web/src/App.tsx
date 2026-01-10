@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import ResultPage from './pages/ResultPage';
 import NotFoundPage from './pages/NotFoundPage';
-import './App.css';
 
 function App() {
   return (
