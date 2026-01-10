@@ -4,26 +4,17 @@ import { usePhoto } from '../hooks/usePhoto';
 
 export default function ResultPage() {
   const navigate = useNavigate();
-  const { data: imageData, isLoading, isError, error } = usePhoto();
+  const { data: imageData, hasFetched } = usePhoto();
 
   const handlePrevious = () => {
     navigate('/');
   };
 
-  if (isLoading) {
+  // store에 데이터가 없으면 에러 표시
+  if (!hasFetched || !imageData) {
     return (
       <div className="min-h-screen bg-[#F5F5F5] flex items-center justify-center">
-        <p className="text-[#1a1a1a] font-sans">로딩 중...</p>
-      </div>
-    );
-  }
-
-  if (isError || !imageData) {
-    return (
-      <div className="min-h-screen bg-[#F5F5F5] flex items-center justify-center">
-        <p className="text-[#1a1a1a] font-sans">
-          오류가 발생했습니다: {error?.message || '이미지 데이터를 불러올 수 없습니다.'}
-        </p>
+        <p className="text-[#1a1a1a] font-sans">이미지 데이터를 불러올 수 없습니다.</p>
       </div>
     );
   }
