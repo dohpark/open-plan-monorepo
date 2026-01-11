@@ -23,4 +23,3 @@ export const preloadImage = (url: string): Promise<HTMLImageElement> => {
     img.src = url;
   });
 };
-
