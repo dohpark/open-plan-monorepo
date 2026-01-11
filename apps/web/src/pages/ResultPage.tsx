@@ -1,20 +1,34 @@
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Button } from '@repo/ui/button';
 import { usePhoto } from '../hooks/usePhoto';
 
 export default function ResultPage() {
   const navigate = useNavigate();
   const { data: imageData, hasFetched, isImageLoading, isImageLoaded } = usePhoto();
+  console.log(imageData);
+
+  // 라우팅 가드: 조회 이력이 없으면 1초 후 /로 이동
+  useEffect(() => {
+    if (!hasFetched) {
+      const timer = setTimeout(() => {
+        navigate('/', { replace: true });
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [hasFetched, navigate]);
 
   const handlePrevious = () => {
     navigate('/');
   };
 
-  // store에 데이터가 없으면 에러 표시
+  // store에 데이터가 없으면 메시지 표시
   if (!hasFetched || !imageData) {
     return (
       <div className="min-h-screen bg-[#F5F5F5] flex items-center justify-center">
-        <p className="text-[#1a1a1a] font-sans">이미지 데이터를 불러올 수 없습니다.</p>
+        <p className="text-[#1a1a1a] font-sans">
+          조회 내역이 없어서 메인 페이지로 1초 뒤에 이동합니다.
+        </p>
       </div>
     );
   }

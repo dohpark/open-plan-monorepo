@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { useCallback, useMemo } from 'react';
 import throttle from 'lodash.throttle';
 import { Button } from '@repo/ui/button';
 import { usePhoto } from '../hooks/usePhoto';
+import { usePhotoStore } from '../stores/photoStore';
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -19,7 +20,12 @@ export default function MainPage() {
     // 데이터가 없으면 API 호출 후 이동
     try {
       await mutateAsync();
-      navigate('/result');
+      // mutateAsync의 onSuccess에서 store가 업데이트되므로,
+      // store 상태를 직접 확인하여 데이터가 있는지 확인 후 이동
+      const storeState = usePhotoStore.getState();
+      if (storeState.hasFetched && storeState.photoData) {
+        navigate('/result');
+      }
     } catch (err) {
       void err; // 에러는 mutation이 처리하므로 여기서는 페이지 이동만 처리
     }
@@ -30,6 +36,11 @@ export default function MainPage() {
     () => throttle(handleNext, 1000, { leading: true, trailing: false }),
     [handleNext]
   );
+
+  // 라우팅 가드: 조회 이력이 있으면 /result로 이동
+  if (hasFetched) {
+    return <Navigate to="/result" replace />;
+  }
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center px-5 relative">
