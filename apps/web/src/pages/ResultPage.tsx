@@ -20,7 +20,12 @@ export default function ResultPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F5F5F5] flex flex-col">
+    <div
+      className="min-h-screen bg-[#F5F5F5] flex flex-col bg-cover bg-center bg-no-repeat bg-fixed"
+      style={{
+        backgroundImage: imageData ? `url(${imageData.download_url})` : undefined,
+      }}
+    >
       {/* Header */}
       <div className="w-full bg-gradient-to-b from-[#E5E5E5] to-[#F5F5F5] py-4 px-5">
         <h1 className="text-center text-[15px] font-medium text-[#1a1a1a] font-sans">박도희</h1>
