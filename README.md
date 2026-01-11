@@ -154,15 +154,11 @@ open-plan/
 
 ### GitHub Repository
 
-<!-- GitHub 저장소 URL을 여기에 추가하세요 -->
-
-- Repository: (추가 예정)
+- Repository: https://github.com/dohpark/open-plan-monorepo
 
 ### 배포 URL
 
-<!-- 배포된 사이트 URL을 여기에 추가하세요 -->
-
-- 배포 사이트: (추가 예정)
+- 배포 사이트: https://open-plan-monorepo-web.vercel.app/
 
 ---
 
